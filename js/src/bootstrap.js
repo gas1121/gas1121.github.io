@@ -1,6 +1,8 @@
 /* global NexT: true */
 
-$(document).ready(function () {
+//$(document).ready(function () {
+$(document).ready(bootstrap);
+function bootstrap() {
 
   $(document).trigger('bootstrap:before');
 
@@ -21,17 +23,22 @@ $(document).ready(function () {
       $siteNav[animateCallback](ON_CLASS_NAME);
     });
   });
-
+  
 
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
-  NexT.utils.embeddedVideoTransformer();
+  //disable functin call when in ajax
+  (!CONFIG.in_ajax) && NexT.utils.embeddedVideoTransformer();
+  //remove 'menu-item-active' class first before add
+  NexT.utils.removeActiveClassToMenuItem();
   NexT.utils.addActiveClassToMenuItem();
-
 
   // Define Motion Sequence.
   NexT.motion.integrator
-    .add(NexT.motion.middleWares.logo)
-    .add(NexT.motion.middleWares.menu)
+    .add(NexT.motion.middleWares.logo);
+  // when called by ajax, ignore menu motion.
+  (!CONFIG.in_ajax) && NexT.motion.integrator
+    .add(NexT.motion.middleWares.menu);
+  NexT.motion.integrator
     .add(NexT.motion.middleWares.postList)
     .add(NexT.motion.middleWares.sidebar);
 
@@ -41,4 +48,5 @@ $(document).ready(function () {
   CONFIG.motion && NexT.motion.integrator.bootstrap();
 
   $(document).trigger('bootstrap:after');
-});
+//});
+}

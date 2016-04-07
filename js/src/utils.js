@@ -128,8 +128,19 @@ NexT.utils = NexT.$u = {
    */
   addActiveClassToMenuItem: function () {
     var path = window.location.pathname;
-    path = path === '/' ? path : path.substring(0, path.length - 1);
+    //deal with path not ending with '/'
+    path = path === '/' ? path : this.removeTrailingSlash(path);
     $('.menu-item a[href="' + path + '"]').parent().addClass('menu-item-active');
+  },
+  
+  
+  removeTrailingSlash: function (path) {
+    return (path.substring(path.length - 1, path.length) === '/') ? path.substring(0, path.length - 1) : path;
+  },
+  
+  //Remove 'menu-item-active' class name to menu item
+  removeActiveClassToMenuItem: function () {
+    $('.menu-item a').parent().removeClass('menu-item-active');    
   },
 
   hasMobileUA: function () {
@@ -175,5 +186,24 @@ NexT.utils = NexT.$u = {
 
   isPisces: function () {
     return CONFIG.scheme === 'Pisces';
+  },
+
+  getScrollbarWidth: function () {
+    var $div = $('<div />').addClass('scrollbar-measure').prependTo('body');
+    var div = $div[0];
+    var scrollbarWidth = div.offsetWidth - div.clientWidth;
+
+    $div.remove();
+
+    return scrollbarWidth;
+  },
+
+  /**
+   * Affix behaviour for Sidebar.
+   *
+   * @returns {Boolean}
+   */
+  needAffix: function () {
+    return this.isPisces();
   }
 };

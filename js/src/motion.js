@@ -1,6 +1,8 @@
 /* global NexT: true */
 
-$(document).ready(function () {
+//$(document).ready(function () {
+$(document).ready(motion);
+function motion() {
   NexT.motion = {};
 
   var sidebarToggleLines = {
@@ -288,4 +290,5 @@ $(document).ready(function () {
     }
   };
 
-});
+//});
+}
