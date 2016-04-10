@@ -27,6 +27,8 @@ function bootstrap() {
 
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
   //disable functin call when in ajax
+  //TODO may disable adjusting iframe loaded by ajax as side effect.
+  //Should limit use range instead.
   (!CONFIG.in_ajax) && NexT.utils.embeddedVideoTransformer();
   //remove 'menu-item-active' class first before add
   NexT.utils.removeActiveClassToMenuItem();
