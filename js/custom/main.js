@@ -1,19 +1,31 @@
+//TODO page.js don't work with es6 import
+//import page from "page.js"
+import Vue from "vue"
+import VueResource from "vue-resource"
+
+
 /// <reference path="../../../../../typings/main.d.ts" />
+
 
 //TODO fix d.ts file include path
 //TODO make code pretty
 //TODO follow es2015 coding pattern
 //TODO add test and comment
 //TODO use promise to replace callback
+//TODO remove cdn and use min version of js library
 
 //spa mode problem
 
 //music player problem
 //TODO music player size and position
 
+
+//Register vue-source for vue
+Vue.use(VueResource);
+
 //Register and start router
 page('/(.*)', ReplaceHtmlData);
-page({
+page.start({
     dispatch:false
 });
 
@@ -63,3 +75,8 @@ function Reboot(pageType) {
     //from bootstrap.js
     bootstrap();
 }
+
+//Use Vue.js to manage additional data for post of type lab with ajax call.
+let vm = new Vue({
+    el: 'body'
+})

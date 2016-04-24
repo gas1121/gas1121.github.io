@@ -1,0 +1,14 @@
+svg {
+    display: block;
+}
+/*TODO solve x axis text block problem*/
+#chart,
+svg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    padding-left: auto;
+    padding-right: auto;
+    padding-right: auto;
+}

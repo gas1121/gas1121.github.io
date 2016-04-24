@@ -1,0 +1,1 @@
+import "babel-polyfill"; // for async/await http://babeljs.io/docs/usage/polyfill/
